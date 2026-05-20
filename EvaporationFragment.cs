@@ -37,20 +37,29 @@ public class EvaporationFragment : IEntityPanelFragment
         _root.style.paddingBottom = 8;
         _root.style.paddingLeft = 10;
         _root.style.paddingRight = 10;
-        _root.style.backgroundColor = new StyleColor(new Color(0.18f, 0.12f, 0.06f, 1f));
+        _root.style.backgroundColor = new StyleColor(new Color(0.239f, 0.180f, 0.118f, 1f));
+        var borderColor = new StyleColor(new Color(0.420f, 0.310f, 0.165f));
+        _root.style.borderTopWidth = 1;
+        _root.style.borderBottomWidth = 1;
+        _root.style.borderLeftWidth = 1;
+        _root.style.borderRightWidth = 1;
+        _root.style.borderTopColor = borderColor;
+        _root.style.borderBottomColor = borderColor;
+        _root.style.borderLeftColor = borderColor;
+        _root.style.borderRightColor = borderColor;
 
         _headerLabel = new Label();
-        _headerLabel.style.color = new StyleColor(new Color(0.9f, 0.72f, 0.22f));
+        _headerLabel.style.color = new StyleColor(new Color(0.941f, 0.753f, 0.251f));
         _headerLabel.style.unityFontStyleAndWeight = FontStyle.Bold;
         _headerLabel.style.marginBottom = 4;
         _root.Add(_headerLabel);
 
         _dailyLeakLabel = new Label();
-        _dailyLeakLabel.style.color = new StyleColor(Color.white);
+        _dailyLeakLabel.style.color = new StyleColor(new Color(0.831f, 0.769f, 0.659f));
         _root.Add(_dailyLeakLabel);
 
         _daysEmptyLabel = new Label();
-        _daysEmptyLabel.style.color = new StyleColor(Color.white);
+        _daysEmptyLabel.style.color = new StyleColor(new Color(0.831f, 0.769f, 0.659f));
         _root.Add(_daysEmptyLabel);
 
         _root.style.display = DisplayStyle.None;
