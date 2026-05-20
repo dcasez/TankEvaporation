@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<LangVersion>preview</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>embedded</DebugType>
+		<AssemblyName>TankEvaporation</AssemblyName>
+		<AssemblyPath>C:\Program Files (x86)\Steam\steamapps\common\Timberborn\Timberborn_Data\Managed</AssemblyPath>
+		<ModPath>C:\Program Files (x86)\Steam\steamapps\workshop\content\1062090\</ModPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="$(AssemblyPath)\Unity*.dll" Publicize="true">
+			<DestinationSubDirectory>libs/</DestinationSubDirectory>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(AssemblyPath)\Timberborn.*.dll" Publicize="true">
+			<DestinationSubDirectory>libs/</DestinationSubDirectory>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(AssemblyPath)\Bindito.*.dll" Publicize="true">
+			<DestinationSubDirectory>libs/</DestinationSubDirectory>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(ModPath)3284904751\0Harmony.dll">
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="$(ModPath)3283831040\version-1.0\Scripts\*.dll">
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="manifest.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Localizations\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

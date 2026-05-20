@@ -1,0 +1,8 @@
+ID,Text,Comment
+TE.Header,Water Tank Evaporation,
+TE.DailyLeak,Daily Leak: {0} units/day ({1}%),
+TE.DaysEmpty,Days Until Empty: {0} days,
+TE.EvaporationPercent,Evaporation Rate (%),
+TE.EvaporationPercentTooltip,Percentage of max tank capacity lost per day. Default is 5. A large tank loses 60 units per day at 5%.,
+TE.WaterOnly,Water Tanks Only,
+TE.WaterOnlyTooltip,When enabled only water tanks evaporate. When disabled all liquid tanks evaporate including badwater and extract. Default off.,
