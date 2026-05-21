@@ -1,5 +1,5 @@
 ID,Text,Comment
-TE.Header,Water Tank Evaporation,
+TE.Header,Tank Evaporation,
 TE.DailyLeak,Daily Leak: {0} units/day ({1}%),
 TE.DaysEmpty,Days Until Empty: {0} days,
 TE.EvaporationPercent,Evaporation Rate (%),
