@@ -44,6 +44,8 @@ public class EvaporationService : ILoadableSingleton, IUnloadableSingleton
 
         foreach (var entity in _entityRegistry.Entities)
         {
+            if (!entity.Name.Contains("Tank", System.StringComparison.OrdinalIgnoreCase)) continue;
+
             var singleGoodAllower = entity.GetComponent<SingleGoodAllower>();
             if (singleGoodAllower == null) continue;
 
@@ -68,8 +70,11 @@ public class EvaporationService : ILoadableSingleton, IUnloadableSingleton
                 int stored = inventory.AmountInStock(goodId);
                 if (stored <= 0) continue;
 
+                int unreserved = inventory.UnreservedAmountInStock(goodId);
+                if (unreserved <= 0) continue;
+
                 int loss = UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt(maxCapacity * rate));
-                loss = UnityEngine.Mathf.Min(loss, stored);
+                loss = UnityEngine.Mathf.Min(loss, unreserved);
 
                 inventory.Take(new GoodAmount(goodId, loss));
             }
