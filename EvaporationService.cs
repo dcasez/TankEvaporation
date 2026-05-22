@@ -44,6 +44,8 @@ public class EvaporationService : ILoadableSingleton, IUnloadableSingleton
 
         foreach (var entity in _entityRegistry.Entities)
         {
+            if (!entity.name.Contains("Tank", System.StringComparison.OrdinalIgnoreCase)) continue;
+
             var singleGoodAllower = entity.GetComponent<SingleGoodAllower>();
             if (singleGoodAllower == null) continue;
 

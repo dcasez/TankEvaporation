@@ -68,6 +68,12 @@ public class EvaporationFragment : IEntityPanelFragment
 
     public void ShowFragment(BaseComponent entity)
     {
+        if (!entity.name.Contains("Tank", System.StringComparison.OrdinalIgnoreCase))
+        {
+            _root.style.display = DisplayStyle.None;
+            return;
+        }
+
         _singleGoodAllower = entity.GetComponent<SingleGoodAllower>();
         if (_singleGoodAllower == null)
         {
