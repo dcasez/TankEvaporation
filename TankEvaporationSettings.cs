@@ -17,7 +17,7 @@ public class TankEvaporationSettings : ModSettingsOwner, IUnloadableSingleton
             .SetLocalizedTooltip("TE.EvaporationPercentTooltip"));
 
     public ModSetting<bool> WaterOnly { get; } = new(
-        false,
+        true,
         ModSettingDescriptor.CreateLocalized("TE.WaterOnly")
             .SetLocalizedTooltip("TE.WaterOnlyTooltip"));
 

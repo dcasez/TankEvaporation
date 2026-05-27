@@ -1,6 +1,6 @@
 {
   "Name": "Tank Evaporation",
-  "Version": "1.0.1",
+  "Version": "1.0.2",
   "Id": "TankEvaporation",
   "MinimumGameVersion": "1.0.0.0",
   "Description": "All liquid tanks lose a configurable % of their max capacity per day. Makes water reservoirs and dams strategically meaningful in the late game.",
