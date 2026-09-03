@@ -76,7 +76,7 @@ public class EvaporationService : ILoadableSingleton, IUnloadableSingleton
                 int loss = UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt(maxCapacity * rate));
                 loss = UnityEngine.Mathf.Min(loss, unreserved);
 
-                inventory.Take(new GoodAmount(goodId, loss));
+                inventory.TakeExisting(new GoodAmount(goodId, loss));
             }
         }
     }
