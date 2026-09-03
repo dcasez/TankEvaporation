@@ -81,7 +81,7 @@ In order:
 1. Bump `Version` in `manifest.json`
 2. Rebuild, copy to the mods folder, test in game
 3. Commit and push to `main`
-4. GitHub release, tagged `vX.Y.Z`, with the DLL, `manifest.json` and `enUS.csv` attached
+4. GitHub release, tagged `X.Y.Z` — bare number, no `v` prefix (matches `1.0.1`, `1.0.2`, `1.1.0`), with the DLL, `manifest.json` and `enUS.csv` attached
 5. Steam Workshop update from the in-game mod uploader — back up the description text before touching it, and add a changelog line at the top
 
 Steam Workshop has no versioning of its own. The number in `manifest.json` is the only version anyone sees.
