@@ -1,109 +1,80 @@
-# CLAUDE.md — AI Assistant Rules for This Mod Project
+# CLAUDE.md — TankEvaporation
 
-## Git is Required — Always
-
-Before making **any** file changes, verify git is initialized and the working tree is clean.
-
-```bash
-git status
-```
-
-If there are uncommitted changes, **stop and ask** before proceeding. Never modify files on top of a dirty working tree.
+Git rules come from the parent folders. This file covers only what's specific to this mod.
 
 ---
 
-## Workflow Rules
+## What It Does
 
-### 1. Branch Before Experimenting
-Never make speculative or exploratory changes on `main`. Always create a branch first:
+Liquid tanks lose a percentage of their **maximum** capacity each day, so large reservoirs stop being free storage. Settings are exposed in-game through the Mod Settings mod:
 
-```bash
-git checkout -b experiment/description-of-change
-```
+- **Evaporation rate** — 1–20%, default 5%
+- **Water only** — default **on**. Applying evaporation to other liquids was too punishing in playtesting, since they can't be replaced as quickly.
 
-Use clear branch names:
-- `fix/passive-node-crash`
-- `feature/new-skill-gems`
-- `experiment/rebalance-damage-values`
-
-### 2. Commit Before AND After
-- **Before** starting work: confirm the last commit is a clean baseline
-- **After** completing a logical change: commit with a descriptive message
-
-```bash
-git add .
-git commit -m "Short description of what changed and why"
-```
-
-### 3. One Thing Per Commit
-Do not bundle unrelated changes into a single commit. If fixing a bug and adding a feature, those are two separate commits.
-
-### 4. Describe What AND Why
-Good commit messages:
-- ✅ `"Increase Fireball base damage by 15% — felt weak at early levels"`
-- ✅ `"Fix crash when loading Act 3 map — missing asset reference"`
-- ❌ `"changes"`
-- ❌ `"update"`
+Published on Steam Workshop. Source at `github.com/dcasez/TankEvaporation`.
 
 ---
 
-## Before Making Any Code/File Change
+## Files
 
-Run this checklist mentally:
-
-1. Is git initialized? (`git status` should work)
-2. Is the working tree clean? (no uncommitted changes)
-3. Am I on an appropriate branch? (not `main` for experimental work)
-4. Do I understand what file(s) I'm about to change?
-
-If any answer is "no" — pause and resolve it first.
-
----
-
-## Recovering From Mistakes
-
-If something breaks:
-
-```bash
-# Undo all changes since last commit
-git restore .
-
-# See history and find a good save point
-git log --oneline
-
-# Jump back to a specific commit (read-only look)
-git checkout <commit-hash>
-
-# Come back to present
-git checkout main
-```
+| File | Does |
+|---|---|
+| `EvaporationService.cs` | Fires on `DaytimeStartEvent`, drains tanks once per day |
+| `EvaporationFragment.cs` | Tank inspect panel — daily leak, days until empty |
+| `TankEvaporationSettings.cs` | The two mod settings |
+| `EvaporationPanelModule.cs` | Registers the fragment |
+| `manifest.json` | Version number and dependencies |
+| `Localizations\enUS.csv` | All UI text |
 
 ---
 
-## Folder Structure Convention
+## Dependencies
 
-Keep mod projects organized so git diffs stay readable:
+Both required, both must be installed from Steam Workshop before building:
 
-```
-/my-mod/
-  CLAUDE.md          ← this file
-  README.md          ← what this mod does
-  /src/              ← actual mod files
-  /docs/             ← notes, changelogs
-  /backups/          ← optional manual backups (git is the real backup)
-```
-
-Add a `.gitignore` to exclude junk:
-
-```
-*.tmp
-*.log
-/backups/
-```
+- **Harmony** — Workshop ID `3284904751`
+- **Mod Settings** — Workshop ID `3283831040`, mod ID `eMka.ModSettings`
 
 ---
 
-## Summary
+## Build and Test
 
-> Git is your save system. Always save before letting AI touch your files.
-> Branches are cheap — use them freely. Commits are forever — label them well.
+Build **Release**, not Debug. Output lands in `bin\Release\netstandard2.1\`.
+
+Install path: `C:\Users\DCase\Documents\Timberborn\Mods\TankEvaporation\`
+
+Copy only what changed:
+
+| Changed | Copy |
+|---|---|
+| Any `.cs` file | `TankEvaporation.dll` |
+| UI text | `Localizations\enUS.csv` |
+| Version or dependencies | `manifest.json` |
+
+I test in game myself. Build and copy, then tell me what to check and wait.
+
+---
+
+## Releasing
+
+In order:
+
+1. Bump `Version` in `manifest.json`
+2. Rebuild, copy to the mods folder, test in game
+3. Commit and push to `main`
+4. GitHub release, tagged `vX.Y.Z`, with the DLL, `manifest.json` and `enUS.csv` attached
+5. Steam Workshop update from the in-game mod uploader — back up the description text before touching it, and add a changelog line at the top
+
+Steam Workshop has no versioning of its own. The number in `manifest.json` is the only version anyone sees.
+
+---
+
+## Things That Have Bitten Us
+
+**Evaporation once drained warehouses.** The drain loop hit every building with an inventory, not just tanks. Fixed by checking for a `SingleGoodAllower` component, plus a guard against reserved stock. Any change to the drain loop needs re-testing against a warehouse holding logs or food.
+
+**Do not identify tanks by prefab name.** Checking for "Tank" in the building name is fragile — it breaks on modded tanks and on game updates. Use component checks.
+
+**Verify class names before writing code.** This project failed repeatedly early on by guessing at the API. Confirmed names as of Timberborn 1.0: `Inventory`, `SingleGoodAllower`, `GoodAmount`, `BlockableObject`, `DaytimeStartEvent`, `EventBus` with `[OnEvent]`, `EntityRegistry`, `IModStarter`, `IModEnvironment`, `RangeIntModSetting`, `ModSettingsOwner`. Water's good ID is the string `"Water"`.
+
+**None of the above is verified against Timberborn 1.1.** The 1.1 update moved things in the component system. Treat every name in this file as unconfirmed until re-checked with `ilspycmd` against the current game DLLs.
