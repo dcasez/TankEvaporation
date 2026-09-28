@@ -56,7 +56,13 @@ Copy only what changed:
 | UI text | `Localizations\enUS.csv` |
 | Version or dependencies | `manifest.json` |
 
-I test in game myself. Build and copy, then tell me what to check and wait.
+**Use the workspace tools** (run from `My Mod Projects\Timberborn`):
+`python tools/build_install.py TankEvaporation` builds Release and copies the DLL, `Localizations\` and
+`manifest.json` into `version-1.1\` (copying all three is harmless). Then
+`python tools/load_check.py TankEvaporation` confirms it loads. Never touch `version-1.0\`: its DLL is
+frozen (see Packaging).
+
+I play-test in game myself. After the load check passes, tell me what to check and wait.
 
 ---
 

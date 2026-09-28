@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/DCase/Desktop/My Mod Projects/Timberborn/tools/guard_hook.py\"",
+            "timeout": 10,
+            "statusMessage": "Checking the write isn't into the game folder"
+          }
+        ]
+      }
+    ]
+  }
+}
