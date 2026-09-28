@@ -23,6 +23,9 @@ Published on Steam Workshop. Source at `github.com/dcasez/TankEvaporation`.
 | `EvaporationFragment.cs` | Tank inspect panel — daily leak, days until empty |
 | `TankEvaporationSettings.cs` | The two mod settings |
 | `EvaporationPanelModule.cs` | Registers the fragment |
+| `ModConfigurator.cs` | Binds the settings and `EvaporationService` into the game's `Game` context |
+| `ModStarter.cs` | Mod entry point (`IModStarter`); runs Harmony `PatchAll`. There are no `[HarmonyPatch]` classes yet, so it currently patches nothing |
+| `TankEvaporation.csproj` | Build setup — game/Harmony/Mod Settings references, publicizer |
 | `manifest.json` | Version number and dependencies |
 | `Localizations\enUS.csv` | All UI text |
 
