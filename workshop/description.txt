@@ -2,7 +2,7 @@ Tanks are too powerful in the late game — you can stack dozens of them
 and survive any drought with zero effort. Expansion of deeper reservoirs and larger dams become 
 optional. This mod fixes that.
 
-All liquid tanks lose a configurable percentage of their maximum 
+Water tanks lose a configurable percentage of their maximum
 capacity every in-game day. A Large Tank holding 1200 units loses 
 60 per day at the default 5% rate. The loss is based on max capacity 
 not current fill level — so a large tank always hurts more than a 
@@ -11,7 +11,8 @@ expansion toward reservoir infrastructure.
 
 FEATURES
 - Configurable evaporation rate: 1% to 20% (default 5%)
-- Optional water-only mode (default off — all liquids affected)
+- Only water evaporates by default. Badwater, extract and other liquids build up much more slowly,
+  so they're left alone unless you turn off the "Water Tanks Only" setting
 - Tank inspect panel shows daily leak and days until empty
 - Works on Small, Medium and Large tanks for both factions
 
