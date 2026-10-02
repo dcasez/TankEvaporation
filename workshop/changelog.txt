@@ -1,0 +1,3 @@
+1.1.0: Works with Timberborn 1.1. Players still on Timberborn 1.0 keep getting 1.0.2.
+1.0.2: Water-only mode is now on by default; other liquids were too punishing at the default rate.
+1.0.1: Fixed evaporation affecting buildings that aren't tanks.

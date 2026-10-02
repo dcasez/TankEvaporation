@@ -1,0 +1,30 @@
+Tanks are too powerful in the late game — you can stack dozens of them 
+and survive any drought with zero effort. Expansion of deeper reservoirs and larger dams become 
+optional. This mod fixes that.
+
+All liquid tanks lose a configurable percentage of their maximum 
+capacity every in-game day. A Large Tank holding 1200 units loses 
+60 per day at the default 5% rate. The loss is based on max capacity 
+not current fill level — so a large tank always hurts more than a 
+small one, making the early game forgiving while pressuring late game 
+expansion toward reservoir infrastructure.
+
+FEATURES
+- Configurable evaporation rate: 1% to 20% (default 5%)
+- Optional water-only mode (default off — all liquids affected)
+- Tank inspect panel shows daily leak and days until empty
+- Works on Small, Medium and Large tanks for both factions
+
+1% rate — Large tank loses 12 units/day, empties in 100 days
+5% rate (default) — Large tank loses 60 units/day, empties in 20 days
+10% rate — Large tank loses 120 units/day, empties in 10 days
+20% rate — Large tank loses 240 units/day, empties in 5 days
+
+REQUIRED MODS
+- Harmony
+- Mod Settings
+
+For players who want the dam infrastructure to matter!
+
+SOURCE CODE & CHANGELOG
+github.com/dcasez/TankEvaporation
