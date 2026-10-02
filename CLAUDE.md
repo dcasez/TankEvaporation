@@ -11,7 +11,7 @@ Liquid tanks lose a percentage of their **maximum** capacity each day, so large 
 - **Evaporation rate** — 1–20%, default 5%
 - **Water only** — default **on**. Applying evaporation to other liquids was too punishing in playtesting, since they can't be replaced as quickly.
 
-Published on Steam Workshop. Source at `github.com/dcasez/TankEvaporation`.
+Published on Steam Workshop, item `3729984713`. Source at `github.com/dcasez/TankEvaporation`.
 
 ---
 
@@ -28,6 +28,7 @@ Published on Steam Workshop. Source at `github.com/dcasez/TankEvaporation`.
 | `TankEvaporation.csproj` | Build setup — game/Harmony/Mod Settings references, publicizer |
 | `manifest.json` | Version number and dependencies |
 | `Localizations\enUS.csv` | All UI text |
+| `workshop\` | Steam Workshop page: description (copied verbatim from Steam 2026-10-02), changelog, tags, thumbnail, item id. Published with the steam-workshop skill |
 
 ---
 
@@ -91,7 +92,7 @@ In order:
 2. Rebuild, copy to the mods folder, test in game
 3. Commit and push to `main`
 4. GitHub release, tagged `X.Y.Z` — bare number, no `v` prefix (matches `1.0.1`, `1.0.2`, `1.1.0`), with the DLL, `manifest.json` and `enUS.csv` attached
-5. Steam Workshop update from the in-game mod uploader — back up the description text before touching it, and add a changelog line at the top
+5. Add a `<version>: <what changed>` line at the top of `workshop\changelog.txt`, then publish with the steam-workshop skill. It uploads the whole installed folder, so `version-1.0\` (frozen) goes along as before. Edit the Steam page text in `workshop\description.txt`, never on the Steam website: each upload sends the file's text
 
 Steam Workshop has no versioning of its own. The number in `manifest.json` is the only version anyone sees.
 
