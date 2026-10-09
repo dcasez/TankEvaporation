@@ -49,14 +49,6 @@ Build **Release**, not Debug. Output lands in `bin\Release\netstandard2.1\`.
 
 Install path: `C:\Users\DCase\Documents\Timberborn\Mods\TankEvaporation\version-1.1\`
 
-Copy only what changed:
-
-| Changed | Copy |
-|---|---|
-| Any `.cs` file | `TankEvaporation.dll` |
-| UI text | `Localizations\enUS.csv` |
-| Version or dependencies | `manifest.json` |
-
 **Use the workspace tools** (run from `My Mod Projects\Timberborn`):
 `python tools/build_install.py TankEvaporation` builds Release and copies the DLL, `Localizations\` and
 `manifest.json` into `version-1.1\` (copying all three is harmless). Then
