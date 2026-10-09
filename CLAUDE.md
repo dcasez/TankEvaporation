@@ -106,7 +106,7 @@ Steam Workshop has no versioning of its own. The number in `manifest.json` is th
 
 **`Inventory.Take` was removed in 1.1.** It split into `TakeConsumed` / `TakeExported` / `TakeExisting`, each passing a `StockChangeType` to the `InventoryStockChanged` event. **Use `TakeExisting`** — it passes `StockChangeType.None`. `TakeConsumed` passes `Consumed`, which `DistrictGoodsBalance` adds to its consumption registry, feeding `GoodsSampler` and the in-game goods statistics UI. Evaporation is not consumption by a building, so recording it there would inflate a player-visible water consumption figure.
 
-**Verify class names before writing code.** This project failed repeatedly early on by guessing at the API. The following are **confirmed against 1.1.2.4** by decompiling and by a clean build:
+**Verify class names before writing code.** This project failed repeatedly early on by guessing at the API. The following are **confirmed against 1.1.2.4** by decompiling and by a clean build, and still hold in **1.1.2.7** (versions compared and a clean build, 2026-10-09; `Inventory` only gained a private field):
 
 `Inventory` (`AmountInStock`, `UnreservedAmountInStock`, `Capacity`, `TakeExisting`), `SingleGoodAllower` (`HasAllowedGood`, `AllowedGood`), `GoodAmount(string, int)`, `BlockableObject.IsUnblocked` (in `Timberborn.BlockingSystem`), `EntityRegistry.Entities` → `ReadOnlyList<EntityComponent>`, `DaytimeStartEvent`, `EventBus.Register`/`Unregister` with `[OnEvent]`, `IEntityPanelFragment` (`ShowFragment` still takes `BaseComponent`), `EntityPanelModule.Builder`, `ILoc.T`, `IModStarter`, `IModEnvironment`, and `RangeIntModSetting` / `ModSettingsOwner` from Mod Settings 1.1. Water's good ID is still the string `"Water"`.
 
